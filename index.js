@@ -1,22 +1,14 @@
+// Import packages
 const express = require("express");
+const home = require("./routes/home");
 
+// Middlewares
 const app = express();
+app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("Express JS on Vercel");
-});
+// Routes
+app.use("/home", home);
 
-app.get("/ping", (req, res) => {
-  res.send("pong 🏓");
-});
-
-const port = process.env.PORT || 8080;
-
-app.listen(port, (err, res) => {
-  if (err) {
-    console.log(err);
-    return res.status(500).send(err.message);
-  } else {
-    console.log("[INFO] Server Running on port:", port);
-  }
-});
+// connection
+const port = process.env.PORT || 9001;
+app.listen(port, () => console.log(`Listening to port ${port}`));
