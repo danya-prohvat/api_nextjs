@@ -13,6 +13,9 @@ app.use(
 
 app.use(express.json());
 app.use("/api", router);
+app.get("/ping", (req, res) => {
+  res.send("pong 🏓");
+});
 
 const start = async () => {
   try {
