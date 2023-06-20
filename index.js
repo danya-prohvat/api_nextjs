@@ -1,14 +1,20 @@
-// Import packages
+// index.js
 const express = require("express");
-const home = require("./routes/home");
 
-// Middlewares
 const app = express();
-app.use(express.json());
+const PORT = 4000;
 
-// Routes
-app.use("/home", home);
+app.listen(PORT, () => {
+  console.log(`API listening on PORT ${PORT} `);
+});
 
-// connection
-const port = process.env.PORT || 9001;
-app.listen(port, () => console.log(`Listening to port ${port}`));
+app.get("/", (req, res) => {
+  res.send("Hey this is my API running 🥳");
+});
+
+app.get("/about", (req, res) => {
+  res.send("This is my about route..... ");
+});
+
+// Export the Express API
+module.exports = app;
