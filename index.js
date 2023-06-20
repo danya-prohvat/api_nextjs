@@ -1,28 +1,22 @@
-import express from "express";
-import cors from "cors";
-import router from "./router.js";
+const express = require("express");
 
-const PORT = 8080;
 const app = express();
 
-app.use(
-  cors({
-    origin: ["http://localhost:3000"],
-  })
-);
+app.get("/", (req, res) => {
+  res.send("Express JS on Vercel");
+});
 
-app.use(express.json());
-app.use("/api", router);
 app.get("/ping", (req, res) => {
   res.send("pong 🏓");
 });
 
-const start = async () => {
-  try {
-    app.listen(PORT, () => console.log("Server started on PORT:" + PORT));
-  } catch (e) {
-    console.log(e);
-  }
-};
+const port = process.env.PORT || 8080;
 
-start();
+app.listen(port, (err, res) => {
+  if (err) {
+    console.log(err);
+    return res.status(500).send(err.message);
+  } else {
+    console.log("[INFO] Server Running on port:", port);
+  }
+});
